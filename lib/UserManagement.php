@@ -218,18 +218,20 @@ class UserManagement
      *
      * @param string $userId User ID
      * @param string $organizationId Organization ID
+     * @param string|null $role_slug The unique role identifier.
      *
      * @throws Exception\WorkOSException
      *
      * @return Resource\OrganizationMembership
      */
-    public function createOrganizationMembership($userId, $organizationId)
+    public function createOrganizationMembership($userId, $organizationId, $role_slug = null)
     {
         $path = "user_management/organization_memberships";
 
         $params = [
             "organization_id" => $organizationId,
-            "user_id" => $userId
+            "user_id" => $userId,
+            "role_slug" => $role_slug
         ];
 
         $response = Client::request(
